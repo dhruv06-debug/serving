@@ -10,26 +10,49 @@
       theme: {
         extend: {
           colors: {
-            // A rich, earthy green as the main primary color
             primary: '#2E8B57',
-            // A slightly darker green for hover effects
             'primary-dark': '#246B42',
-            // A warm, vibrant orange for accents and calls to action
             accent: '#FF8C00',
-            // A subtle, lighter version of the accent color for backgrounds
             'accent-light': '#FFF0E6',
           }
         }
       }
     }
   </script>
+  <style>
+    /* Custom CSS for modal overlay */
+    .modal-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+    }
+
+    /* Custom CSS for the mobile menu dropdown */
+    #mobile-menu {
+      position: absolute;
+      top: 100%; /* Position right below the header */
+      right: 1.5rem; /* Match the padding on the container */
+      width: 15rem; /* Adjust width as needed */
+      transform-origin: top right;
+      transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    #mobile-menu.active {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800">
 
   <header class="bg-white shadow-sm sticky top-0 z-50">
-    <nav class="container mx-auto px-2 sm:px-4 py-gir  flex items-center justify-between">
+    <nav class="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <div class="flex items-center space-x-2">
-        <img src="smart-removebg-preview.png" alt="Smart Servings Logo" class="h-20 sm:h-24"> </div>
+        <img src="dddhdd.jpeg" alt="Smart Servings Logo" class="h-16">
+      </div>
       
       <div class="hidden md:flex flex-1 items-center justify-end space-x-6">
         <a href="#" class="text-gray-600 hover:text-gray-900 text-sm sm:text-base">Home</a>
@@ -37,42 +60,42 @@
         <a href="#calculator" class="text-gray-600 hover:text-gray-900 text-sm sm:text-base">Calculator</a>
         <a href="#about" class="text-gray-600 hover:text-gray-900 text-sm sm:text-base">About</a>
         <a href="#contact" class="text-gray-600 hover:text-gray-900 text-sm sm:text-base">Contact</a>
-        <button class="bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-dark transition duration-200 text-sm sm:text-base">Start My Plan</button>
+        <button id="show-login" class="border border-primary text-primary px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition duration-200">Login</button>
+        <button id="show-register" class="bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-dark transition duration-200">Register</button>
       </div>
 
-      <div class="md:hidden">
+      <div class="md:hidden relative">
         <button id="mobile-menu-btn" class="text-gray-600 hover:text-gray-900 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
     </nav>
     
-    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md rounded-b-lg px-4 pb-4">
-      <div class="flex flex-col items-center space-y-4">
-        <a href="#" class="text-gray-600 hover:text-gray-900 text-base">Home</a>
-        <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 text-base">How It Works</a>
-        <a href="#calculator" class="text-gray-600 hover:text-gray-900 text-base">Calculator</a>
-        <a href="#about" class="text-gray-600 hover:text-gray-900 text-base">About</a>
-        <a href="#contact" class="text-gray-600 hover:text-gray-900 text-base">Contact</a>
-        <button class="w-full bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-primary-dark transition duration-200">Start My Plan</button>
+    <div id="mobile-menu" class="md:hidden bg-white shadow-lg rounded-xl px-4 py-4 border border-gray-100">
+      <div class="flex flex-col items-start space-y-4 text-left">
+        <a href="#" class="text-gray-900 w-full px-4 py-2 rounded-md hover:bg-gray-50 transition duration-150 font-medium">Home</a>
+        <a href="#how-it-works" class="text-gray-900 w-full px-4 py-2 rounded-md hover:bg-gray-50 transition duration-150">How It Works</a>
+        <a href="#calculator" class="text-gray-900 w-full px-4 py-2 rounded-md hover:bg-gray-50 transition duration-150">Calculator</a>
+        <a href="#about" class="text-gray-900 w-full px-4 py-2 rounded-md hover:bg-gray-50 transition duration-150">About</a>
+        <a href="#contact" class="text-gray-900 w-full px-4 py-2 rounded-md hover:bg-gray-50 transition duration-150">Contact</a>
+        <div class="w-full h-px bg-gray-200 my-2"></div>
+        <div class="w-full flex flex-col space-y-2">
+            <button id="show-login-mobile" class="w-full border border-primary text-primary px-4 py-2 rounded-md font-semibold hover:bg-primary hover:text-white transition duration-200">Login</button>
+            <button id="show-register-mobile" class="w-full bg-primary text-white px-4 py-2 rounded-md font-semibold hover:bg-primary-dark transition duration-200">Register</button>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
     <section class="container mx-auto px-4 sm:px-6 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between space-y-10 md:space-y-0 md:space-x-12">
-      <div class="flex-1 relative order-2 md:order-1">
-        <div class="hidden md:flex absolute top-0 right-0 flex space-x-4">
-          <button class="bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-primary-dark transition duration-200">Start My Plan</button>
-          <button class="border border-gray-300 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-200">Calculate Now</button>
-        </div>
-
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-0 md:mt-20">Eat Smarter. Live Healthier.</h1>
+      <div class="flex-1 order-2 md:order-1">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mt-0">Eat Smarter. Live Healthier.</h1>
         <p class="mt-4 text-lg sm:text-xl text-gray-600">Customized meal plans based on your protein and calorie needs.</p>
         
-        <div class="md:hidden flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
             <button class="bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-primary-dark transition duration-200">Start My Plan</button>
             <button class="border border-gray-300 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-200">Calculate Now</button>
         </div>
@@ -153,7 +176,6 @@
           <h3 class="text-lg sm:text-xl font-semibold mb-2">Your Personalized Meal Plan</h3>
           <p class="text-gray-500 text-sm">Enter your calorie and protein targets to get started with your custom meal recommendations.</p>
         </div>
-
       </div>
     </section>
 
@@ -236,7 +258,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer class="bg-gray-100 py-12">
@@ -244,7 +265,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         <div>
           <div class="flex items-center justify-center md:justify-start space-x-2 mb-2">
-            <sva" alt="Smart Servings Logo" class="h-8">
+            <img src="dddhdd.jpeg" alt="Smart Servings Logo" class="h-8">
           </div>
           <p class="text-sm text-gray-600">Smart Meals for Smart Goals</p>
           <p class="mt-2 text-sm text-gray-500">Making healthy eating effortless with personalized meal recommendations.</p>
@@ -270,14 +291,130 @@
     </div>
   </footer>
   
+  <div id="login-modal" class="fixed inset-0 hidden items-center justify-center modal-overlay">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-11/12 max-w-sm relative">
+        <button id="close-login" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">Login to your account</h3>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="login-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" required>
+            </div>
+            <div>
+                <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="login-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" required>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition duration-200">
+                Login
+            </button>
+        </form>
+        <p class="text-center text-sm mt-4 text-gray-600">
+            Don't have an account? <button id="show-register-from-login" class="text-primary hover:text-primary-dark focus:outline-none font-medium">Register</button>
+        </p>
+    </div>
+  </div>
+
+  <div id="register-modal" class="fixed inset-0 hidden items-center justify-center modal-overlay">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-11/12 max-w-sm relative">
+        <button id="close-register" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <h3 class="text-2xl font-bold mb-6 text-center text-gray-900">Create an account</h3>
+        <form id="register-form" class="space-y-4">
+            <div>
+                <label for="register-name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="register-name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" required>
+            </div>
+            <div>
+                <label for="register-email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="register-email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" required>
+            </div>
+            <div>
+                <label for="register-password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="register-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm" required>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition duration-200">
+                Register
+            </button>
+        </form>
+        <p class="text-center text-sm mt-4 text-gray-600">
+            Already have an account? <button id="show-login-from-register" class="text-primary hover:text-primary-dark focus:outline-none font-medium">Login</button>
+        </p>
+    </div>
+  </div>
+  
   <script>
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const showLoginBtn = document.getElementById('show-login');
+    const showRegisterBtn = document.getElementById('show-register');
+    const showLoginMobileBtn = document.getElementById('show-login-mobile');
+    const showRegisterMobileBtn = document.getElementById('show-register-mobile');
+    const loginModal = document.getElementById('login-modal');
+    const registerModal = document.getElementById('register-modal');
+    const closeLoginBtn = document.getElementById('close-login');
+    const closeRegisterBtn = document.getElementById('close-register');
+    const showRegisterFromLoginBtn = document.getElementById('show-register-from-login');
+    const showLoginFromRegisterBtn = document.getElementById('show-login-from-register');
+
+    function toggleModal(modal) {
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
 
     mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('active');
+    });
+
+    showLoginBtn.addEventListener('click', () => {
+      toggleModal(loginModal);
+    });
+    showRegisterBtn.addEventListener('click', () => {
+      toggleModal(registerModal);
+    });
+
+    // Updated event listeners for the new mobile menu buttons
+    showLoginMobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      toggleModal(loginModal);
+    });
+    showRegisterMobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      toggleModal(registerModal);
+    });
+
+    closeLoginBtn.addEventListener('click', () => {
+      toggleModal(loginModal);
+    });
+    closeRegisterBtn.addEventListener('click', () => {
+      toggleModal(registerModal);
+    });
+
+    showRegisterFromLoginBtn.addEventListener('click', () => {
+      toggleModal(loginModal);
+      toggleModal(registerModal);
+    });
+    showLoginFromRegisterBtn.addEventListener('click', () => {
+      toggleModal(registerModal);
+      toggleModal(loginModal);
+    });
+    
+    // Prevent default form submission and display an alert
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Login functionality is for demonstration only. This is a static site!");
+    });
+    
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Registration functionality is for demonstration only. This is a static site!");
     });
   </script>
-
 </body>
 </html>
